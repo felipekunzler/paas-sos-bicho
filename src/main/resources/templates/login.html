@@ -9,19 +9,26 @@
         <div class="mt-5 mb-5">
             <form th:action="@{/login}" method="post" class="wrap form-signin">
                 <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-                <input type="text" name="username" class="form-control mb-3" placeholder="Usuário" required autofocus>
-                <input type="password" name="password" class="form-control mb-3" placeholder="Senha" required>
+                <input type="text" name="username" th:classappend="${param.error} ? 'is-invalid'" class="form-control mb-3" placeholder="Usuário" th:autofocus="${signup == null}">
+                <input type="password" name="password" th:classappend="${param.error} ? 'is-invalid'" class="form-control mb-3" placeholder="Senha">
                 <p th:if="${param.error}" class="invalid">Usuário ou senha incorretos</p>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
             </form>
         </div>
         <div>
-            <form class="wrap form-signup">
-                <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
-                <input type="text" name="username" class="form-control mb-3" placeholder="Usuário" required autofocus>
-                <input type="password" name="password" class="form-control mb-3" placeholder="Senha" required>
-                <input type="password" name="password-repeat" class="form-control mb-3" placeholder="Senha novamente" required>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+            <form th:action="@{/signup}" th:object="${user}" method="post" class="wrap form-signup">
+                <h1 class="h3 font-weight-normal">Sign up</h1>
+
+                <input type="text" th:field="*{username}" th:classappend="${#fields.hasErrors('username')} ? 'is-invalid'" class="form-control mt-3" placeholder="Usuário" th:autofocus="${signup}" >
+                <div class="invalid-feedback" th:each="error : ${#fields.errors('username')}" th:text="${error}">Validation error</div>
+
+                <input type="password" th:field="*{password}" th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'" class="form-control mt-3" placeholder="Senha">
+                <div class="invalid-feedback" th:each="error : ${#fields.errors('password')}" th:text="${error}">Validation error</div>
+
+                <input type="password" th:field="*{matchingPassword}" th:classappend="${#fields.hasErrors('matchingPassword')} ? 'is-invalid'" class="form-control mt-3" placeholder="Confirmar senha">
+                <div class="invalid-feedback" th:each="error : ${#fields.errors('matchingPassword')}" th:text="${error}">Validation error</div>
+
+                <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Sign up</button>
             </form>
         </div>
     </div>

@@ -14,7 +14,7 @@ public class DatabaseLoader implements CommandLineRunner {
 
     @Override
     public void run(String... strings) {
-        repository.save(new User("Frodo", "Baggins", "ring bearer"));
+        repository.save(new User("Frodo", "Baggins"));
     }
 
 }

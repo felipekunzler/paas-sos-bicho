@@ -21,3 +21,8 @@
 .invalid {
     color: #E74C3C;
 }
+
+.invalid-feedback {
+    text-align: left;
+    margin-left: 10px;
+}

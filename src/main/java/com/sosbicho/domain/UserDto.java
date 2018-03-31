@@ -1,23 +1,15 @@
 package com.sosbicho.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
+public class UserDto {
 
-@Entity
-public class User {
-
-    @Id
+    @NotEmpty
     private String username;
+
+    @NotEmpty
     private String password;
-
-    private User() {
-    }
-
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
+    private String matchingPassword;
 
     public String getUsername() {
         return username;
@@ -33,5 +25,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getMatchingPassword() {
+        return matchingPassword;
+    }
+
+    public void setMatchingPassword(String matchingPassword) {
+        this.matchingPassword = matchingPassword;
     }
 }
