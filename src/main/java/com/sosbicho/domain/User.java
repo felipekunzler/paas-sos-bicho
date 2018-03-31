@@ -1,11 +1,16 @@
 package com.sosbicho.domain;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 
 @Entity
 public class User {
+
+    public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
     @Id
     private String username;
@@ -16,7 +21,7 @@ public class User {
 
     public User(String username, String password) {
         this.username = username;
-        this.password = password;
+        setPassword(password);
     }
 
     public String getUsername() {
@@ -32,6 +37,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = PASSWORD_ENCODER.encode(password);
     }
+
 }
