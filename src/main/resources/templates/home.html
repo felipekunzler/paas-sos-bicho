@@ -1,81 +1,51 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
 <body>
 
 <div class="container mt-5" layout:fragment="content">
-    <p>homepage</p>
+    <!--<img style="height: 150px; width: 200px; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E">-->
+
+    <div class="row justify-content-between mb-4 no-margin">
+        <div>
+            <h3>Bichos cadastrados</h3>
+        </div>
+        <div>
+            <a class="btn btn-primary btn-md" href="/new-bicho">Cadastrar novo Bicho</a>
+        </div>
+    </div>
     <table class="table table-hover">
-        <thead>
-        <tr>
-            <th scope="col">Type</th>
-            <th scope="col">Column heading</th>
-            <th scope="col">Column heading</th>
-            <th scope="col">Column heading</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="table-active">
-            <th scope="row">Active</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        <tr>
-            <th scope="row">Default</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
         <tr class="table-primary">
-            <th scope="row">Primary</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Porte</th>
+            <th>Espécie</th>
+            <th>Raça</th>
+            <th>Interessados</th>
+            <th>Ações</th>
         </tr>
-        <tr class="table-secondary">
-            <th scope="row">Secondary</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        <tr class="table-success">
-            <th scope="row">Success</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        <tr class="table-danger">
-            <th scope="row">Danger</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        <tr class="table-warning">
-            <th scope="row">Warning</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        <tr class="table-info">
-            <th scope="row">Info</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        <tr class="table-light">
-            <th scope="row">Light</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        <tr class="table-dark">
-            <th scope="row">Dark</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        </tbody>
+        <th:block th:each="bicho : ${bichos}">
+            <tr th:classappend="${bicho.adopted} ? 'table-success'">
+                <td th:text="${bicho.name}"></td>
+                <td th:text="${bicho.age}"></td>
+                <td th:text="${bicho.size}"></td>
+                <td th:text="${bicho.species}"></td>
+                <td th:text="${#strings.defaultString(bicho.race, '-')}"></td>
+                <td th:text="${bicho.interestedString}"></td>
+                <td>
+                    <form th:action="@{/interest}" method="post">
+                        <input type="hidden" name="id" th:value="${bicho.id}">
+                        <button class="btn btn-outline-primary btn-sm">Interesse</button>
+                    </form>
+                    <form th:action="@{/adopt}" method="post">
+                        <input type="hidden" name="id" th:value="${bicho.id}">
+                        <button class="btn btn-outline-primary btn-sm" th:disabled="${bicho.owner.username != #authentication.principal.username}">Adotado</button>
+                    </form>
+                </td>
+            </tr>
+        </th:block>
     </table>
+
 </div>
 
 </body>

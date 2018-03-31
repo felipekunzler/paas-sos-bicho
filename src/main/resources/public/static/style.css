@@ -11,7 +11,7 @@
 }
 
 .limit {
-    max-width: 800px;
+    max-width: 650px;
 }
 
 .logout {
@@ -25,4 +25,22 @@
 .invalid-feedback {
     text-align: left;
     margin-left: 10px;
+}
+
+.list-group-item {
+    padding: 0.1rem 1.25rem;
+    border: none;
+}
+
+.table .btn {
+    min-width: 72px;
+}
+
+.table form {
+    display: inline;
+}
+
+.no-margin {
+    margin-left: 0px;
+    margin-right: 0px;
 }

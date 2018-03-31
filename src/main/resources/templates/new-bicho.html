@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<body>
+
+<div class="container limit" layout:fragment="content">
+    <div class="text-center mt-5 sm">
+        <div class="mt-5">
+            <form th:action="@{/new-bicho}" th:object="${bicho}" method="post" class="wrap form-signup">
+                <h1 class="h3 font-weight-normal">Registrar novo Bicho</h1>
+
+                <input type="text" th:field="*{name}" th:classappend="${#fields.hasErrors('name')} ? 'is-invalid'" class="form-control mt-3" placeholder="Nome" autofocus>
+                <div class="invalid-feedback" th:each="error : ${#fields.errors('name')}" th:text="${error}">Validation error</div>
+
+                <input type="text" th:field="*{size}" th:classappend="${#fields.hasErrors('size')} ? 'is-invalid'" class="form-control mt-3" placeholder="Porte">
+                <div class="invalid-feedback" th:each="error : ${#fields.errors('size')}" th:text="${error}">Validation error</div>
+
+                <input type="text" th:field="*{species}" th:classappend="${#fields.hasErrors('species')} ? 'is-invalid'" class="form-control mt-3" placeholder="Espécie">
+                <div class="invalid-feedback" th:each="error : ${#fields.errors('species')}" th:text="${error}">Validation error</div>
+
+                <input type="text" th:field="*{race}" th:classappend="${#fields.hasErrors('race')} ? 'is-invalid'" class="form-control mt-3" placeholder="Raça">
+                <div class="invalid-feedback" th:each="error : ${#fields.errors('race')}" th:text="${error}">Validation error</div>
+
+                <input type="number" th:field="*{age}" th:classappend="${#fields.hasErrors('age')} ? 'is-invalid'" class="form-control mt-3" placeholder="Idade">
+                <div class="invalid-feedback" th:each="error : ${#fields.errors('age')}" th:text="${error}">Validation error</div>
+
+                <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
