@@ -13,3 +13,11 @@
 .limit {
     max-width: 800px;
 }
+
+.logout {
+    display: inline;
+}
+
+.invalid {
+    color: #E74C3C;
+}

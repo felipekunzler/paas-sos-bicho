@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-jb1k1ntK2AaXuVTIiFXgcGvjcWQrYlrsxipJRLPdwnr1sHBRqSLowOD2q3dIL5KG" crossorigin="anonymous">
-    <link href="style.css" rel="stylesheet">
+    <link href="static/style.css" rel="stylesheet">
     <title>SOS-Bicho</title>
 </head>
 <body class="mb-5">
     <nav class="navbar navbar-inverse navbar-dark bg-primary">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">SOS-Bicho</a>
+                <a class="navbar-brand" href="/">SOS-Bicho</a>
             </div>
-            <div>
-                <span class="welcome">Bem-vindo user.</span><a href="#">Logout</a>
+            <div sec:authorize="isAuthenticated()">
+                <span class="welcome">Bem-vindo [[${#authentication.principal.username}]]!</span>
+                <form th:action="@{/logout}" method="post" class="logout">
+                    <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Log out"/>
+                </form>
             </div>
         </div>
     </nav>

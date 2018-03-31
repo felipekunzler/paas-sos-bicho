@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      layout:decorate="layout">
 <body>
 
 <div class="container limit" layout:fragment="content">
     <div class="text-center mt-5 sm">
         <div class="mt-5 mb-5">
-            <form class="wrap form-signin ">
+            <form th:action="@{/login}" method="post" class="wrap form-signin">
                 <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-                <input type="email" id="inputEmail" class="form-control mb-3" placeholder="Usuário" required autofocus>
-                <input type="password" id="inputPassword" class="form-control mb-3" placeholder="Senha" required>
-                <button class="btn btn-lg btn-primary btn-block" type="submit mb-3">Login</button>
+                <input type="text" name="username" class="form-control mb-3" placeholder="Usuário" required autofocus>
+                <input type="password" name="password" class="form-control mb-3" placeholder="Senha" required>
+                <p th:if="${param.error}" class="invalid">Usuário ou senha incorretos</p>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
             </form>
         </div>
         <div>
-            <form class="wrap form-signup ">
+            <form class="wrap form-signup">
                 <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
-                <input type="email" id="inputEmail-r" class="form-control mb-3" placeholder="Usuário" required autofocus>
-                <input type="password" id="inputPassword-r" class="form-control mb-3" placeholder="Senha" required>
-                <input type="password" id="inputPassword-2" class="form-control mb-3" placeholder="Senha novamente" required>
+                <input type="text" name="username" class="form-control mb-3" placeholder="Usuário" required autofocus>
+                <input type="password" name="password" class="form-control mb-3" placeholder="Senha" required>
+                <input type="password" name="password-repeat" class="form-control mb-3" placeholder="Senha novamente" required>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
             </form>
         </div>
