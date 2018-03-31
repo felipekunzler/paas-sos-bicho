@@ -40,7 +40,30 @@
     display: inline;
 }
 
+.flex-form {
+    display: inline-flex;
+}
+
 .no-margin {
     margin-left: 0px;
     margin-right: 0px;
+}
+
+.push-bottom {
+    position: relative;
+}
+
+.push-bottom div {
+    margin-bottom: 1rem;
+    position: absolute;
+    bottom: 0;
+    width: max-content;
+}
+
+.push-bottom button {
+    margin-right: 5px;
+}
+
+.margin-filter {
+    margin-right: 15px;
 }

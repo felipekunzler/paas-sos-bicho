@@ -1,9 +1,6 @@
 package com.sosbicho.controller;
 
-import com.sosbicho.domain.Bicho;
-import com.sosbicho.domain.BichoDto;
-import com.sosbicho.domain.User;
-import com.sosbicho.domain.UserDto;
+import com.sosbicho.domain.*;
 import com.sosbicho.repository.BichoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,8 +24,9 @@ public class BichoController {
     private BichoRepository bichoRepository;
 
     @GetMapping("/")
-    public String home(Model model) {
+    public String home(@ModelAttribute("filter") FilterForm filter, Model model) {
         model.addAttribute("bichos", bichoRepository.findAll());
+        model.addAttribute("filter", filter);
         return "home";
     }
 
@@ -54,17 +53,18 @@ public class BichoController {
     }
 
     @PostMapping("/adopt")
-    public String adopt(Long id, Principal principal) {
+    public String adopt(Long id, FilterForm filter, Principal principal, RedirectAttributes redirectAttributes) {
         Bicho bicho = bichoRepository.findById(id).get();
         if (principal.getName().equalsIgnoreCase(bicho.getOwner().getUsername())) {
             bicho.setAdopted(!bicho.isAdopted());
             bichoRepository.save(bicho);
         }
+        redirectAttributes.addFlashAttribute("filter", filter);
         return "redirect:/";
     }
 
     @PostMapping("/interest")
-    public String interest(Long id, Principal principal) {
+    public String interest(Long id, FilterForm filter, Principal principal, RedirectAttributes redirectAttributes) {
         Bicho bicho = bichoRepository.findById(id).get();
         User user = new User(principal.getName(), null);
         if (bicho.getInterested().contains(user)) {
@@ -73,6 +73,7 @@ public class BichoController {
             bicho.getInterested().add(user);
         }
         bichoRepository.save(bicho);
+        redirectAttributes.addFlashAttribute("filter", filter);
         return "redirect:/";
     }
 
