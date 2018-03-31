@@ -1,0 +1,15 @@
+.welcome {
+    color: white;
+    margin-right: 10px;
+}
+
+.wrap {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #ecf0f1;
+    border-radius: 0.3rem;
+}
+
+.limit {
+    max-width: 800px;
+}
