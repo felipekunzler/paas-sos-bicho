@@ -1,5 +1,7 @@
 package com.sosbicho.domain;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -19,6 +21,16 @@ public class BichoDto {
     private String species;
 
     private String race;
+
+    private MultipartFile picture;
+
+    public MultipartFile getPicture() {
+        return picture;
+    }
+
+    public void setPicture(MultipartFile picture) {
+        this.picture = picture;
+    }
 
     @NotNull
     @Min(0)

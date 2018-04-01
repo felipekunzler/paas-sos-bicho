@@ -1,4 +1,4 @@
-package com.sosbicho.security;
+package com.sosbicho.service;
 
 import com.sosbicho.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

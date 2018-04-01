@@ -22,6 +22,7 @@ public class Bicho {
 
     @ManyToMany
     private List<User> interested;
+    private String picture;
 
     public Long getId() {
         return id;
@@ -100,4 +101,11 @@ public class Bicho {
         this.interested = interested;
     }
 
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
 }

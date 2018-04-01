@@ -5,6 +5,7 @@ import com.sosbicho.domain.BichoDto;
 import com.sosbicho.domain.FilterForm;
 import com.sosbicho.domain.User;
 import com.sosbicho.repository.BichoRepository;
+import com.sosbicho.service.StorageService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -23,6 +25,9 @@ public class BichoController {
 
     @Autowired
     private BichoRepository bichoRepository;
+
+    @Autowired
+    private StorageService storageService;
 
     @GetMapping("/")
     public String home(@ModelAttribute("filter") FilterForm filter, Model model) {
@@ -50,6 +55,13 @@ public class BichoController {
         Bicho bicho = new Bicho();
         bicho.setOwner(new User(owner, null));
         BeanUtils.copyProperties(bichoDto, bicho);
+        bichoRepository.save(bicho);
+
+        MultipartFile file = bichoDto.getPicture();
+        if (!file.isEmpty()) {
+            String name = storageService.store(file, bicho.getId());
+            bicho.setPicture(name);
+        }
         bichoRepository.save(bicho);
     }
 

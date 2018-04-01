@@ -1,5 +1,6 @@
-package com.sosbicho.security;
+package com.sosbicho.config;
 
+import com.sosbicho.service.JpaUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,10 +13,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private JpaUserDetailsService jpaUserDetailsService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
+        http.authorizeRequests()
                 .antMatchers("/signup").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -31,9 +34,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers("/static/**");
     }
-
-    @Autowired
-    private JpaUserDetailsService jpaUserDetailsService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
