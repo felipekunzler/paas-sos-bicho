@@ -1,4 +1,4 @@
-package com.sosbicho;
+package com.sosbicho.repository;
 
 import com.sosbicho.domain.Bicho;
 import com.sosbicho.domain.User;
