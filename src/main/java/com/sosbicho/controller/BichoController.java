@@ -1,6 +1,9 @@
 package com.sosbicho.controller;
 
-import com.sosbicho.domain.*;
+import com.sosbicho.domain.Bicho;
+import com.sosbicho.domain.BichoDto;
+import com.sosbicho.domain.FilterForm;
+import com.sosbicho.domain.User;
 import com.sosbicho.repository.BichoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
 
@@ -25,8 +26,8 @@ public class BichoController {
 
     @GetMapping("/")
     public String home(@ModelAttribute("filter") FilterForm filter, Model model) {
-        model.addAttribute("bichos", bichoRepository.findAll());
         model.addAttribute("filter", filter);
+        model.addAttribute("bichos", bichoRepository.findByFilter(filter));
         return "home";
     }
 
