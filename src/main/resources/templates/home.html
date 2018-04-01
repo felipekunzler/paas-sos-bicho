@@ -51,7 +51,9 @@
         </tr>
         <th:block th:each="bicho : ${bichos}">
             <tr th:classappend="${bicho.adopted} ? 'table-success'">
-                <td th:text="${bicho.name}"></td>
+                <td>
+                    <a th:text="${bicho.name}" th:href="${#strings.isEmpty(bicho.picture) ? '#' : '/uploads/' + bicho.picture}" th:data-lightbox="${bicho.picture}"></a>
+                </td>
                 <td th:text="${bicho.age}"></td>
                 <td th:text="${bicho.size}"></td>
                 <td th:text="${bicho.species}"></td>

@@ -1,5 +1,5 @@
 .welcome {
-    color: white;
+    color: #fff;
     margin-right: 10px;
 }
 
@@ -67,3 +67,11 @@
 .margin-filter {
     margin-right: 15px;
 }
+
+.table-success a, .table-success button, .table-success button:disabled {
+    color: #fff;
+}
+
+/* Align lightbox vertically */
+#lightboxOverlay { position: fixed !important; top: 0; left: 0; height: 100% !important; width: 100% !important; }
+#lightbox { position: fixed !important; top: 50% !important; transform: translateY(-50%); }
