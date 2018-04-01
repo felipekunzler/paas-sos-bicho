@@ -45,7 +45,7 @@ public class DatabaseLoader implements CommandLineRunner {
         bicho.setRace(null);
         bicho.setAge(12);
         bicho.setOwner(userTest);
-        bicho.setAdopted(true);
+        bicho.setAdopted(false);
         bicho.setInterested(Arrays.asList(userAdmin, userTest));
         bichoRepository.save(bicho);
     }

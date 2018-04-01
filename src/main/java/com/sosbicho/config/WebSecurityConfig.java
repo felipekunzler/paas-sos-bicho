@@ -28,6 +28,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .logout()
                 .permitAll();
+        // Enables H2 Console, only for development
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
+
     }
 
     @Override
