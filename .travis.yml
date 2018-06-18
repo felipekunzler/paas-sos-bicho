@@ -3,3 +3,13 @@ script: mvn clean test
 branches:
   only:
   - master
+deploy:
+  provider: cloudfoundry
+  api: https://api.run.pivotal.io
+  username: felipekunzler@gmail.com
+  password:
+    secure: gw6381nh3Ao9NetcQrE+t4k7GB+zKAbAfBnTskfAn3nAiSn0jmKhiWyJim8R24FSgbZcB74H0AxHQhMCFffFO/BEuKWjquFLTy4anj1syQfNBJaWbbrDhKojKAqWHR+LWZH2NuJkGUbAbjXFIvROp202Mh9dh4TWc+QOCLuHTxK8Qrc4dt3rmP+q3srWQZK0iE6TGHP7c0aI1KWPhSvZZOaNVhhTl9lIGY0BP7mXj6KFT+CloTbX+Rd/IwtfiZ7Y6SNB8mxZHPsmZkJsgB2+CUvDooaEP1BQPlMR9qfsQ4Yh41yRxvQpwIZ/wkCCG5j+TeHK6Us6nFgSul6R15wlef2k8yVIQwLJAfZnhr62CINYcDS99ZtYIegk/iffGC/GEK+mbig3Peht2HxN47SVPU2cPV9zKxmMh9L0QebfbWRIXp4PtVbU5h/8iIiMWujFKd9f63GK3B2L53h1G1z9Ff7uEv4zS1xI1ONXrse8NHYG6AuYBTF5Mi/3dT3rISWQG45mm0IKZHYpR4QohgR5egFGMCy3Be6lMV9gDMEBksIIOuohMTi+aoJfVOxQO4fdb6SlypJsbRUH72x+q8dcrC1lGDhmLKX942dMppSRBDmkYgahVmKoi2eds/MWCYGf78PDG2EBMDdwzstu54QMrt7sPqjNSyIDmzsz+DeRmu8=
+  organization: felipekunzler-org
+  space: development
+  on:
+    repo: felipekunzler/paas-sos-bicho

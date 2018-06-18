@@ -4,3 +4,4 @@ applications:
   buildpack: java_buildpack
   memory: 768M
   instances: 1
+  path: target/sos-bicho-0.0.1-SNAPSHOT.jar
