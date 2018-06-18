@@ -2,3 +2,6 @@ target/
 .idea/
 *.iml
 /upload-dir/
+.classpath
+.project
+.settings
