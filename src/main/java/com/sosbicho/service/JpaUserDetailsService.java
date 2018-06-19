@@ -21,7 +21,7 @@ public class JpaUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-        return new User(user.getUsername(), user.getPassword(), AuthorityUtils.createAuthorityList("ROLE_USER"));
+        return new User(user.getUsername(), user.getPassword(), AuthorityUtils.createAuthorityList("ROLE_CUSTOMER"));
     }
 
 }
