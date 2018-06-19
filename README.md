@@ -1,7 +1,7 @@
 # SOS-Bicho
 [![Build Status](https://travis-ci.org/felipekunzler/paas-sos-bicho.svg?branch=master)](https://travis-ci.org/felipekunzler/paas-sos-bicho)
 
-A simple spring boot app for CF deployment 
+A simple spring boot app for Continuous Integration with travis and deployment with Cloud Foundry.
 
 ## Building
 `./mvnw clean package` 
