@@ -1,8 +1,11 @@
 language: java
-script: mvn clean test
+script: mvn clean package
 branches:
   only:
   - master
+cache:
+  directories:
+    - $HOME/.m2
 deploy:
   provider: cloudfoundry
   api: https://api.run.pivotal.io

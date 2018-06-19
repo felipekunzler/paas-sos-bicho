@@ -1,5 +1,7 @@
 # SOS-Bicho
-A simple spring boot app for CF deployment
+[![Build Status](https://travis-ci.org/felipekunzler/paas-sos-bicho.svg?branch=master)](https://travis-ci.org/felipekunzler/paas-sos-bicho)
+
+A simple spring boot app for CF deployment 
 
 ## Building
 `./mvnw clean package` 
