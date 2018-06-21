@@ -19,8 +19,7 @@ public class JpaUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
         com.sosbicho.domain.User user = repository.findByUsernameIgnoreCase(name);
         if (user == null) {
-            //throw new UsernameNotFoundException("User not found");
-            return null;
+            throw new UsernameNotFoundException("User not found");
         }
         return new User(user.getUsername(), user.getPassword(), AuthorityUtils.createAuthorityList("ROLE_USER"));
     }
